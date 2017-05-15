@@ -35,7 +35,7 @@ party_votes2010 <- ge_2010[1:650, c("Press.Association.Reference", "Con", "DUP",
 
 # Clean colnames
 party_colnames15 <- c("Press_ID", "Con15", "DUP15", "Grn15", "Ind1_15", "Ind2_15", "Lab15", "Lab_coop15", "LD15", "PC15", "SDLP15", "SNP15", "SF15", "UKIP15", "UUP15")
-party_colnames10 <- c("Press_ID", "Con10", "DUP10", "Grn10", "Ind1_10", "Ind2_105", "Lab10", "LD10", "PC10", "SDLP10", "SNP10", "SF10", "UKIP10")
+party_colnames10 <- c("Press_ID", "Con10", "DUP10", "Grn10", "Ind1_10", "Ind2_10", "Lab10", "LD10", "PC10", "SDLP10", "SNP10", "SF10", "UKIP10")
 
 colnames(party_votes2015) <- party_colnames15
 colnames(party_votes2010) <- party_colnames10
@@ -80,3 +80,10 @@ child_poverty_data <- read.csv("C:\\Users\\james.hale\\Documents\\Election\\elec
 unemployment_data <- read.csv("C:\\Users\\james.hale\\Documents\\Election\\election-prediction-master\\election-prediction-master\\unemployment_data_by_constituency.csv")
 youth_unemployment_data <- read.csv("C:\\Users\\james.hale\\Documents\\Election\\election-prediction-master\\election-prediction-master\\youth_unemployment_data_by_constituency.csv")
 incapacity_benefits_data <- read.csv("C:\\Users\\james.hale\\Documents\\Election\\election-prediction-master\\election-prediction-master\\incapacity_benefits_data_by_constituency.csv")
+
+# Import 2005 data (form slightly different)
+clean7$Constituency15 <- sapply(clean7$Constituency15, tolower)
+
+ge_2005 <- read.csv("C:\\Users\\james.hale\\Documents\\Election\\election-prediction-master\\election-prediction-master\\2005_election_results.csv")
+ge_2005$Name_2005 <- sapply(ge_2005$Name_2005, tolower)
+clean8 <- left_join(clean7, ge_2005, by=c("Constituency15" = "Name_2005"))
